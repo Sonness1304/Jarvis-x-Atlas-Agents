@@ -1,4 +1,4 @@
-# Jarvis × Atlas — Multi-Agent Engineering OS & MCP Platform
+# J.A.R.V.I.S Agents — Multi-Agent & MCP Platform
 
 [![Node.js >= 20](https://img.shields.io/badge/Node.js-%3E%3D20%20ESM-0F5C54?style=flat-square)](https://nodejs.org/)
 [![Dependencies](https://img.shields.io/badge/Core%20Dependencies-Zero%20External-166534?style=flat-square)](#runnable-core-modules)
@@ -71,8 +71,8 @@ This showcase repository packages **sanitized, standalone, zero-dependency Node.
 **Prerequisites:** Node.js `>= 20` and Git. Zero `npm install` needed.
 
 ```bash
-git clone https://github.com/<your-username>/jarvis-atlas-agent-os.git
-cd jarvis-atlas-agent-os
+git clone https://github.com/Sonness1304/J.A.R.V.I.S-Agents.git
+cd J.A.R.V.I.S-Agents
 
 # 1. Run all unit & integration tests (10/10 PASS)
 npm test
