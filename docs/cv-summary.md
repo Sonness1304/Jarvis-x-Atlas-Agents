@@ -6,7 +6,7 @@
 
 ## 1. English CV Version (AI Engineer / Agent Systems / Backend Engineer)
 
-**J.A.R.V.I.S Agents — Multi-Agent & MCP Platform (Jarvis × Atlas)** | *Creator & Systems Architect*
+**Jarvis × Atlas Agents — Multi-Agent Engineering OS & MCP Platform** | *Creator & Systems Architect*
 *Tech Stack:* Node.js (ESM, zero external runtime dependencies), Model Context Protocol (MCP / JSON-RPC 2.0 `2025-06-18`), Windows UI Automation (UIA / Native COM), Git Worktrees, Multi-Provider LLM Gateway (`OpenAI Responses` / `Gemini` / `Claude`), Automated Offline Evals
 
 - **Multi-Agent Architecture & Governance:** Designed a co-lead engineering operating system separating product/UI execution (**Jarvis**) and architecture/review (**Atlas**) across three bounded execution lanes (Direct, Parallel Read-Only subagents, and multi-worker isolated Git worktrees) with a progressive **57-skill** routing layer (`<= 8` entrypoints/turn).
@@ -18,7 +18,7 @@
 
 ## 2. Bản CV Tiếng Việt (AI Agent Engineer / Backend / Full-Stack Systems)
 
-**J.A.R.V.I.S Agents — Nền tảng Multi-Agent & MCP (Jarvis × Atlas)** | *Tác giả & Kiến trúc sư hệ thống*
+**Jarvis × Atlas Agents — Hệ điều hành Multi-Agent Engineering & Nền tảng MCP** | *Tác giả & Kiến trúc sư hệ thống*
 *Công nghệ:* Node.js ESM (không phụ thuộc thư viện ngoài ở lõi), Model Context Protocol (MCP / JSON-RPC 2.0 `2025-06-18`), Windows UI Automation (UIA / Native COM), Git Worktrees, Local LLM Gateway đa nhà cung cấp (`OpenAI Responses` / `Gemini` / `Claude`), Offline Eval Harness
 
 - **Kiến trúc Multi-Agent & Điều phối thực thi:** Thiết kế hệ điều hành tác vụ kỹ thuật hai góc nhìn **Jarvis** (sản phẩm, UI/UX, báo cáo/sơ đồ) × **Atlas** (kiến trúc, lập kế hoạch read-only, review độc lập) với 3 làn thực thi có giới hạn (Direct, Parallel Read-Only, Multi-worker trên Git worktree cô lập) và cơ chế nạp động **57 kỹ năng chuyên môn** (`<= 8` entrypoint/lượt) giúp tiết kiệm ngữ cảnh mà không suy giảm chất lượng.

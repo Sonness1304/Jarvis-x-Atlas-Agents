@@ -1,0 +1,21 @@
+# Example MCP Server Configuration for Codex / OpenCode / MCP Hosts
+# Replace <PATH_TO_REPO> with your local clone path of Jarvis-x-Atlas-Agents.
+# NEVER hardcode secrets here — supply tokens via OS Credential Vault or environment variables.
+
+[mcp_servers.jarvis_github_public]
+command = "node"
+args = ["<PATH_TO_REPO>/src/read-mcp.mjs", "github"]
+
+[mcp_servers.jarvis_telegram_readonly]
+command = "node"
+args = ["<PATH_TO_REPO>/src/read-mcp.mjs", "telegram"]
+# Requires env: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
+
+[mcp_servers.jarvis_discord_readonly]
+command = "node"
+args = ["<PATH_TO_REPO>/src/read-mcp.mjs", "discord"]
+# Requires env: DISCORD_BOT_TOKEN, DISCORD_CHANNEL_ID
+
+[mcp_servers.jarvis_windows_uia]
+command = "node"
+args = ["<PATH_TO_REPO>/src/windows-mcp-core.mjs"]

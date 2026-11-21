@@ -45,7 +45,7 @@ Expected response highlights:
 
 ## 2. `jarvis-windows` — UIA-First Desktop Automation MCP
 
-In the full production Jarvis × Atlas workspace, Windows desktop automation is governed by a dedicated **`jarvis-windows` MCP server** designed around deterministic control targeting rather than fragile coordinate-only clicking.
+Included in this repository as a clean, pluggable JSON-RPC 2.0 core at [`src/windows-mcp-core.mjs`](../src/windows-mcp-core.mjs) (mirroring the full production `jarvis-windows` MCP server), Windows desktop automation is designed around deterministic control targeting rather than fragile coordinate-only clicking.
 
 ### Control Hierarchy (Least-Fragile First)
 

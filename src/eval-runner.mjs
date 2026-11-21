@@ -6,7 +6,10 @@ import { fileURLToPath } from "node:url";
 const DEFAULT_SUITES = [
   { id: "harness-lifecycle", description: "Verify-gated feature tracking and <= 2 KiB handoff generation.", files: ["tests/harness.test.mjs"] },
   { id: "worktree-isolation", description: "Isolated Git worktree creation and dirty-tree safety guards.", files: ["tests/worktree.test.mjs"] },
-  { id: "read-only-mcp", description: "JSON-RPC 2.0 Read-Only MCP protocol, schema guards, and untrusted-data framing.", files: ["tests/read-mcp.test.mjs"] }
+  { id: "read-only-mcp", description: "JSON-RPC 2.0 Read-Only MCP protocol, schema guards, and untrusted-data framing.", files: ["tests/read-mcp.test.mjs"] },
+  { id: "windows-uia-mcp", description: "Windows UIA-first MCP observe-before-act, SHA-256 driver integrity, and anti-replay guards.", files: ["tests/windows-mcp-core.test.mjs"] },
+  { id: "lean-memory-and-skills", description: "<= 8 KiB hot checkpoint, <= 8 progressive skill routing, and fail-closed task context.", files: ["tests/recovery-and-context.test.mjs"] },
+  { id: "hybrid-review-and-cli", description: "Independent Hybrid Review v2 (100% diff coverage + existingCode anchors), 6-pillar Doctor, and workspace bootstrap.", files: ["tests/review-engine.test.mjs", "tests/cli-and-init.test.mjs"] }
 ];
 
 function stripNodeTestEnv(env) {
