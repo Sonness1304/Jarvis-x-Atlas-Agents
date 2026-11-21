@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jarvis x Atlas Agents — Mission Control Report Viewer</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <div>
+        <div class="eyebrow">Jarvis x Atlas Agents // Mission Control</div>
+        <h1>Agent OS Telemetry &amp; Verification Viewer</h1>
+        <p>
+          Zero-dependency local browser viewer for <code>jarvis doctor</code>,
+          <code>jarvis eval</code>, and progressive <code>skills route</code> JSON reports.
+        </p>
+      </div>
+      <div class="pill-row">
+        <span class="pill ok">MCP 2025-06-18</span>
+        <span class="pill">Hot Checkpoint &lt;= 8 KiB</span>
+        <span class="pill">Skills Cap &lt;= 8 / Turn</span>
+      </div>
+    </header>
+
+    <section class="kpi-grid" aria-label="Key Engineering Metrics">
+      <article class="card">
+        <div class="kpi-label">Doctor Health</div>
+        <div class="kpi-value" id="kpi-doctor">6 / 6</div>
+        <div class="kpi-sub">All workspace pillars ready</div>
+      </article>
+      <article class="card">
+        <div class="kpi-label">Offline Eval Pass Rate</div>
+        <div class="kpi-value" id="kpi-eval">100%</div>
+        <div class="kpi-sub" id="kpi-eval-sub">6 suites deterministic baseline</div>
+      </article>
+      <article class="card">
+        <div class="kpi-label">Hot Checkpoint Budget</div>
+        <div class="kpi-value" id="kpi-checkpoint">806 B</div>
+        <div class="kpi-sub">Limit: 8,192 B (9.8% used)</div>
+      </article>
+      <article class="card">
+        <div class="kpi-label">Installed Core Skills</div>
+        <div class="kpi-value" id="kpi-skills">14</div>
+        <div class="kpi-sub">57-skill full ecosystem taxonomy</div>
+      </article>
+    </section>
+
+    <section class="grid-2">
+      <div class="card">
+        <h2>
+          <span>Progressive Skill Explorer</span>
+          <span class="badge cat" id="skill-match-count">14 skills</span>
+        </h2>
+        <div class="controls">
+          <input
+            id="skill-filter"
+            type="search"
+            placeholder="Filter skills by keyword (e.g. mcp, uia, tdd, review, svg)..."
+            aria-label="Filter skills"
+          />
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Skill ID</th>
+              <th>Category</th>
+              <th>Lead</th>
+            </tr>
+          </thead>
+          <tbody id="skill-rows"></tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h2>
+          <span>Paste Live CLI JSON Report</span>
+          <span class="badge pass" id="report-badge">SAMPLE LOADED</span>
+        </h2>
+        <textarea id="json-input" aria-label="Paste JSON from jarvis doctor or jarvis eval"></textarea>
+        <div class="controls" style="margin-top: 10px;">
+          <button id="btn-parse" type="button">Inspect JSON</button>
+          <button id="btn-reset" class="secondary" type="button">Load Sample Report</button>
+        </div>
+        <div class="status-note" id="parse-status">
+          Tip: Run <code>node src/cli.mjs eval</code> or <code>node src/cli.mjs doctor</code> and paste output above.
+        </div>
+        <table class="table" style="margin-top: 12px;">
+          <thead>
+            <tr>
+              <th>Suite / Pillar</th>
+              <th>Status</th>
+              <th>Detail</th>
+            </tr>
+          </thead>
+          <tbody id="report-rows"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const CORE_SKILLS = [
+      { id: "using-superpowers", category: "core-governance", owner: "Jarvis x Atlas" },
+      { id: "brainstorming", category: "planning", owner: "Jarvis x Atlas" },
+      { id: "writing-plans", category: "planning", owner: "Atlas" },
+      { id: "test-driven-development", category: "engineering", owner: "Atlas" },
+      { id: "systematic-debugging", category: "engineering", owner: "Atlas" },
+      { id: "verification-before-completion", category: "quality-gate", owner: "Atlas" },
+      { id: "using-git-worktrees", category: "orchestration", owner: "Atlas" },
+      { id: "orca-orchestration", category: "orchestration", owner: "Jarvis x Atlas" },
+      { id: "requesting-code-review", category: "quality-gate", owner: "Atlas" },
+      { id: "jarvis-ui-design", category: "design-and-ui", owner: "Jarvis" },
+      { id: "jarvis-diagram-design", category: "design-and-ui", owner: "Jarvis" },
+      { id: "jarvis-desktop", category: "desktop-automation", owner: "Jarvis x Atlas" },
+      { id: "jarvis-report-writing", category: "writing-and-research", owner: "Jarvis" },
+      { id: "agent-security-hardening", category: "security", owner: "Atlas" }
+    ];
+
+    const SAMPLE_REPORT = {
+      artifact: "JARVIS_ATLAS_EVAL_REPORT",
+      ok: true,
+      summary: { suitesTotal: 6, suitesPassed: 6, tests: 18, pass: 18, fail: 0, passRate: 1 },
+      suites: [
+        { id: "harness-lifecycle", ok: true, pass: 2, tests: 2 },
+        { id: "worktree-isolation", ok: true, pass: 2, tests: 2 },
+        { id: "read-only-mcp", ok: true, pass: 4, tests: 4 },
+        { id: "windows-uia-mcp", ok: true, pass: 2, tests: 2 },
+        { id: "lean-memory-and-skills", ok: true, pass: 3, tests: 3 },
+        { id: "hybrid-review-and-cli", ok: true, pass: 5, tests: 5 }
+      ]
+    };
+
+    const skillRows = document.getElementById("skill-rows");
+    const skillFilter = document.getElementById("skill-filter");
+    const skillCount = document.getElementById("skill-match-count");
+    const jsonInput = document.getElementById("json-input");
+    const reportRows = document.getElementById("report-rows");
+    const reportBadge = document.getElementById("report-badge");
+    const parseStatus = document.getElementById("parse-status");
+
+    function renderSkills(term = "") {
+      const q = term.trim().toLowerCase();
+      const filtered = CORE_SKILLS.filter(
+        (s) => !q || s.id.includes(q) || s.category.includes(q) || s.owner.toLowerCase().includes(q)
+      );
+      skillCount.textContent = `${filtered.length} skills`;
+      skillRows.innerHTML = filtered
+        .map(
+          (s) =>
+            `<tr><td><code>${s.id}</code></td><td><span class="badge cat">${s.category}</span></td><td>${s.owner}</td></tr>`
+        )
+        .join("");
+    }
+
+    function renderReport(data) {
+      reportRows.innerHTML = "";
+      if (Array.isArray(data.suites)) {
+        document.getElementById("kpi-eval").textContent = `${Math.round((data.summary?.passRate ?? 1) * 100)}%`;
+        document.getElementById("kpi-eval-sub").textContent = `${data.summary?.suitesPassed ?? 0}/${data.summary?.suitesTotal ?? 0} suites passed`;
+        reportBadge.textContent = data.ok ? "EVAL PASS" : "EVAL FAIL";
+        reportBadge.className = `badge ${data.ok ? "pass" : "fail"}`;
+        reportRows.innerHTML = data.suites
+          .map(
+            (s) =>
+              `<tr><td><code>${s.id}</code></td><td><span class="badge ${s.ok ? "pass" : "fail"}">${s.ok ? "PASS" : "FAIL"}</span></td><td>${s.pass}/${s.tests} tests</td></tr>`
+          )
+          .join("");
+        return;
+      }
+      if (Array.isArray(data.pillars)) {
+        document.getElementById("kpi-doctor").textContent = data.score || "6/6";
+        reportBadge.textContent = data.ok ? "DOCTOR OK" : "DOCTOR WARN";
+        reportBadge.className = `badge ${data.ok ? "pass" : "fail"}`;
+        reportRows.innerHTML = data.pillars
+          .map(
+            (p) =>
+              `<tr><td><code>${p.pillar}</code></td><td><span class="badge ${p.ok ? "pass" : "fail"}">${p.ok ? "OK" : "FAIL"}</span></td><td>${p.status || p.file || p.protocolVersion || "checked"}</td></tr>`
+          )
+          .join("");
+      }
+    }
+
+    skillFilter.addEventListener("input", (e) => renderSkills(e.target.value));
+    document.getElementById("btn-parse").addEventListener("click", () => {
+      try {
+        const parsed = JSON.parse(jsonInput.value);
+        renderReport(parsed);
+        parseStatus.textContent = `Loaded artifact: ${parsed.artifact || "JSON report"}`;
+      } catch (err) {
+        parseStatus.textContent = `Invalid JSON: ${err.message}`;
+      }
+    });
+    document.getElementById("btn-reset").addEventListener("click", () => {
+      jsonInput.value = JSON.stringify(SAMPLE_REPORT, null, 2);
+      renderReport(SAMPLE_REPORT);
+      parseStatus.textContent = "Loaded built-in sample eval report.";
+    });
+
+    renderSkills("");
+    jsonInput.value = JSON.stringify(SAMPLE_REPORT, null, 2);
+    renderReport(SAMPLE_REPORT);
+  </script>
+</body>
+</html>

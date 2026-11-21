@@ -1,0 +1,34 @@
+name: Jarvis x Atlas CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 6-Pillar Doctor
+        run: npm run doctor
+      - name: Validate Progressive Skills Catalog
+        run: npm run skills:validate
+      - name: Unit & Integration Tests
+        run: npm test
+      - name: Deterministic Offline Evals
+        run: npm run eval
+      - name: Python 3 MCP Client & Eval Analyzer Smoke
+        run: |
+          python3 python/jarvis_mcp_client.py --server github
+          python3 python/jarvis_mcp_client.py --server windows
+          python3 python/eval_analyzer.py
+      - name: Pre-Release Privacy & Secret Hygiene Audit
+        run: npm run audit:privacy

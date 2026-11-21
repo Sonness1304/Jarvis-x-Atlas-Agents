@@ -4,7 +4,7 @@
 [![Dependencies](https://img.shields.io/badge/Runtime%20Dependencies-Zero%20External-166534?style=flat-square)](#runnable-source-architecture-src)
 [![MCP Protocol](https://img.shields.io/badge/MCP-JSON--RPC%202.0%20(2025--06--18)-3730A3?style=flat-square)](docs/mcp-architecture.md)
 [![Skills System](https://img.shields.io/badge/Progressive%20Skills-14%20Bundled%20%7C%2057%20Catalog-B45309?style=flat-square)](docs/skills-catalog.md)
-[![Tests & Evals](https://img.shields.io/badge/Tests%2020%2F20%20%7C%20Evals%206%2F6-PASS-0F766E?style=flat-square)](docs/memory-and-evals.md)
+[![Tests & Evals](https://img.shields.io/badge/Tests%2022%2F22%20%7C%20Evals%206%2F6-PASS-0F766E?style=flat-square)](docs/memory-and-evals.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-334155?style=flat-square)](LICENSE)
 
 > **A complete, clone-and-run Multi-Agent Engineering Operating System, custom Model Context Protocol (MCP) server suite, progressive 57-skill routing framework, verify-gated long-running harness, lean memory recovery controller, independent hybrid code review engine, and deterministic offline eval runner—implemented in zero-dependency Node.js ESM.**
@@ -95,9 +95,22 @@ Jarvis-x-Atlas-Agents/
 │   ├── memory-and-evals.md        # <= 8 KiB memory tiering, Hybrid Review v2 & offline evals
 │   ├── cv-summary.md              # Resume bullets (EN / VI) & technical interview talking points
 │   └── diagrams/                  # Editorial SVG architecture & execution flowcharts
+├── sdk/                           # TypeScript SDK (strict MCP 2025-06-18 client & OS contracts)
+│   ├── types.ts                   # Shared TypeScript interfaces for MCP, Skills & Eval reports
+│   └── mcp-client.ts              # Zero-dep TypeScript stdio JSON-RPC 2.0 MCP client
+├── python/                        # Python 3 MCP Client & Token-Budget / Eval Telemetry
+│   ├── jarvis_mcp_client.py       # Zero-dep Python 3 stdio JSON-RPC 2.0 MCP client
+│   └── eval_analyzer.py           # Token-budget & deterministic offline eval summary engine
+├── ui/dashboard/                  # Local zero-dep Mission Control Viewer (HTML + CSS)
+│   ├── index.html                 # Interactive skill explorer + Doctor/Eval JSON inspector
+│   └── styles.css                 # Editorial light-mode design system (#FAF9F5)
 ├── scripts/
-│   └── privacy-audit.mjs          # Pre-release PII, OS-path & secret-pattern scanner
-└── tests/                         # 8 test suites (20 unit & integration tests, 100% PASS)
+│   ├── privacy-audit.mjs          # Pre-release PII, OS-path & secret-pattern scanner
+│   ├── windows/uia-bridge.ps1     # Windows UIA process-stamp & read-only control observer
+│   ├── windows/setup-env.ps1      # 1-click Windows environment check & test runner
+│   └── unix/bootstrap.sh          # POSIX/macOS/Linux bootstrap & CI verification scripts
+├── .github/workflows/ci.yml       # Automated GitHub Actions CI (Node + TS + Python + Privacy)
+└── tests/                         # 9 test suites (22 unit & polyglot integration tests)
 ```
 
 ---
@@ -209,6 +222,33 @@ printf '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion
 ```
 
 Ready-to-paste host registration config: [`templates/mcp-config.toml`](templates/mcp-config.toml).
+
+---
+
+---
+
+## Polyglot Architecture & Multi-Language Tooling
+
+Each language in this repository serves a real operational role—zero boilerplate, all verified in CI:
+
+| Layer | Language | Files | Purpose |
+|---|---|---|---|
+| **Agent OS Core & MCP Servers** | **JavaScript (Node.js ESM)** | `src/*.mjs` | Zero-dep CLI, JSON-RPC 2.0 MCP servers, Harness, Worktrees, Hybrid Review v2, Evals |
+| **Typed Client SDK** | **TypeScript** | `sdk/types.ts`, `sdk/mcp-client.ts` | Strongly typed MCP `2025-06-18` stdio client & report contracts |
+| **Python AI / Eval Integration** | **Python 3** | `python/jarvis_mcp_client.py`, `python/eval_analyzer.py` | Zero-dep Python MCP client + context token-budget & eval analyzer |
+| **Windows UIA Bridge & Setup** | **PowerShell** | `scripts/windows/uia-bridge.ps1`, `scripts/windows/setup-env.ps1` | Real Windows UIA `PID+HWND+processStart` observer + 1-click Windows setup |
+| **Mission Control Viewer** | **HTML / CSS** | `ui/dashboard/index.html`, `ui/dashboard/styles.css` | Local browser viewer for `doctor`, `eval`, and progressive `skills` JSON reports |
+| **Unix / CI Automation** | **Shell & YAML** | `scripts/unix/*.sh`, `.github/workflows/ci.yml` | Linux/macOS bootstrap & GitHub Actions quality gate |
+
+```bash
+# Run Python 3 MCP client against local Node MCP servers
+python3 python/jarvis_mcp_client.py --server github
+python3 python/jarvis_mcp_client.py --server windows
+python3 python/eval_analyzer.py
+
+# Windows UIA read-only identity & visible-window observer
+pwsh -NoProfile -File scripts/windows/uia-bridge.ps1 -Action list-windows
+```
 
 ---
 
