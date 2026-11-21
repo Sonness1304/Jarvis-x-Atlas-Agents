@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 812" width="1440" height="812" role="img" aria-labelledby="life-title life-desc">
+  <title id="life-title">Jarvis x Atlas — End-to-End Task Execution and Verification Flowchart</title>
+  <desc id="life-desc">Execution flowchart from task intake, cold-start recovery, complexity routing across Direct, Parallel Read-Only, and Atlas Plan plus Worktree Harness lanes, through automated verification and independent hybrid review gates, to verified handoff.</desc>
+  <defs>
+    <style>
+      .sans { font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, "Inter", Arial, sans-serif; }
+      .mono { font-family: "Cascadia Code", "Consolas", "SFMono-Regular", monospace; }
+      .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; fill: #0F5C54; text-transform: uppercase; }
+      .title { font-size: 25px; font-weight: 700; fill: #121820; }
+      .subtitle { font-size: 13px; fill: #4B5563; }
+      .step-num { font-size: 10.5px; font-weight: 700; fill: #FFFFFF; }
+      .node-title { font-size: 13px; font-weight: 700; fill: #121820; }
+      .node-body { font-size: 11.5px; fill: #374151; }
+      .node-cmd { font-size: 10.5px; font-weight: 600; fill: #0F5C54; }
+      .edge-lbl { font-size: 11px; font-weight: 700; fill: #334155; }
+      .fail-lbl { font-size: 11px; font-weight: 700; fill: #B91C1C; }
+      .pass-lbl { font-size: 11px; font-weight: 700; fill: #166534; }
+      .footer { font-size: 11px; fill: #6B7280; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8.5 5 L 0 8.5 z" fill="#475569"/>
+    </marker>
+    <marker id="arrow-link" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8.5 5 L 0 8.5 z" fill="#475569"/>
+    </marker>
+    <marker id="arrow-accent" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8.5 5 L 0 8.5 z" fill="#166534"/>
+    </marker>
+    <marker id="arrow-fail" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8.5 5 L 0 8.5 z" fill="#B91C1C"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1440" height="812" rx="18" fill="#FAF9F5"/>
+  <rect x="1" y="1" width="1438" height="810" rx="17" fill="none" stroke="#E5E1D8" stroke-width="2"/>
+
+  <text x="40" y="42" class="sans eyebrow">EXECUTION LIFECYCLE • DETERMINISTIC FLOWCHART</text>
+  <text x="40" y="72" class="sans title">How a Task Flows Through Jarvis × Atlas (Intake → Plan → Verify → Handoff)</text>
+  <text x="40" y="94" class="sans subtitle">Every task passes cold-start provenance verification, complexity-based lane selection, exit-code-gated harness checks, and independent review.</text>
+  <line x1="40" y1="110" x2="1400" y2="110" stroke="#E5E1D8" stroke-width="1.5"/>
+
+  <g transform="translate(40, 134)">
+    <rect x="0" y="0" width="250" height="106" rx="12" fill="#FFFFFF" stroke="#0F766E" stroke-width="1.8"/>
+    <rect x="12" y="12" width="54" height="20" rx="5" fill="#0F5C54"/>
+    <text x="39" y="26" text-anchor="middle" class="mono step-num">STEP 1</text>
+    <text x="74" y="27" class="sans node-title">Task Intake</text>
+    <text x="14" y="54" class="sans node-body">Natural-language request</text>
+    <text x="14" y="72" class="sans node-body">Bind target repo &amp; scope</text>
+    <text x="14" y="92" class="mono node-cmd">AGENTS.md + host context</text>
+  </g>
+  <line x1="290" y1="187" x2="334" y2="187" stroke="#475569" stroke-width="2" marker-end="url(#arrow-link)"/>
+
+  <g transform="translate(338, 134)">
+    <rect x="0" y="0" width="290" height="106" rx="12" fill="#FFFFFF" stroke="#3730A3" stroke-width="1.8"/>
+    <rect x="12" y="12" width="54" height="20" rx="5" fill="#3730A3"/>
+    <text x="39" y="26" text-anchor="middle" class="mono step-num">STEP 2</text>
+    <text x="74" y="27" class="sans node-title">Cold-Start Recovery</text>
+    <text x="14" y="54" class="sans node-body">Read Hot Checkpoint (&lt;= 8 KiB)</text>
+    <text x="14" y="72" class="sans node-body">Verify Git HEAD, dirty &amp; SHA-256</text>
+    <text x="14" y="92" class="mono node-cmd">jarvis-recovery.mjs brief</text>
+  </g>
+  <line x1="628" y1="187" x2="672" y2="187" stroke="#475569" stroke-width="2" marker-end="url(#arrow-link)"/>
+
+  <g transform="translate(676, 134)">
+    <rect x="0" y="0" width="296" height="106" rx="12" fill="#FFFFFF" stroke="#B45309" stroke-width="1.8"/>
+    <rect x="12" y="12" width="54" height="20" rx="5" fill="#B45309"/>
+    <text x="39" y="26" text-anchor="middle" class="mono step-num">STEP 3</text>
+    <text x="74" y="27" class="sans node-title">Skill &amp; Context Gate</text>
+    <text x="14" y="54" class="sans node-body">Auto-select &lt;= 8 task entrypoints</text>
+    <text x="14" y="72" class="sans node-body">Dedupe context; fail-closed if stale</text>
+    <text x="14" y="92" class="mono node-cmd">jarvis-task-context.mjs</text>
+  </g>
+  <line x1="972" y1="187" x2="1032" y2="187" stroke="#475569" stroke-width="2" marker-end="url(#arrow-link)"/>
+
+  <g transform="translate(1036, 122)">
+    <polygon points="180,0 356,65 180,130 4,65" fill="#FEF3C7" stroke="#D97706" stroke-width="2"/>
+    <text x="180" y="56" text-anchor="middle" class="sans node-title">Route Execution</text>
+    <text x="180" y="75" text-anchor="middle" class="sans node-title">Lane?</text>
+    <text x="180" y="96" text-anchor="middle" class="sans node-body">Scope &amp; Parallelism</text>
+  </g>
+
+  <path d="M 1216 252 L 1216 280 L 222 280 L 222 316" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-link)"/>
+  <rect x="126" y="268" width="192" height="20" rx="6" fill="#FAF9F5"/>
+  <text x="222" y="282" text-anchor="middle" class="sans edge-lbl">A. Small / Sequential</text>
+
+  <path d="M 1216 280 L 656 280 L 656 316" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-link)"/>
+  <rect x="546" y="268" width="220" height="20" rx="6" fill="#FAF9F5"/>
+  <text x="656" y="282" text-anchor="middle" class="sans edge-lbl">B. Independent Research</text>
+
+  <path d="M 1216 280 L 1146 280 L 1146 316" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-link)"/>
+  <rect x="1030" y="268" width="232" height="20" rx="6" fill="#FAF9F5"/>
+  <text x="1146" y="282" text-anchor="middle" class="sans edge-lbl">C. Complex / Multi-Session</text>
+
+  <g transform="translate(40, 320)">
+    <rect x="0" y="0" width="364" height="156" rx="12" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1.6"/>
+    <rect x="14" y="14" width="96" height="20" rx="5" fill="#334155"/>
+    <text x="62" y="28" text-anchor="middle" class="mono step-num">LANE A • DIRECT</text>
+    <text x="14" y="56" class="sans node-title">Single Coordinator (0 Workers)</text>
+    <text x="14" y="78" class="sans node-body">1. Read exact target source &amp; tests</text>
+    <text x="14" y="98" class="sans node-body">2. Apply TDD (RED -&gt; minimal GREEN)</text>
+    <text x="14" y="118" class="sans node-body">3. Call MCP tools (UIA / Read-MCP / Web)</text>
+    <text x="14" y="140" class="mono node-cmd">Fast path • Zero orchestration overhead</text>
+  </g>
+
+  <g transform="translate(444, 320)">
+    <rect x="0" y="0" width="424" height="156" rx="12" fill="#FFFFFF" stroke="#6366F1" stroke-width="1.6"/>
+    <rect x="14" y="14" width="136" height="20" rx="5" fill="#4338CA"/>
+    <text x="82" y="28" text-anchor="middle" class="mono step-num">LANE B • PARALLEL RO</text>
+    <text x="14" y="56" class="sans node-title">1–2 Read-Only Native Subagents</text>
+    <text x="14" y="78" class="sans node-body">1. Dispatch bounded question + exact target files</text>
+    <text x="14" y="98" class="sans node-body">2. Main chat continues non-overlapping work</text>
+    <text x="14" y="118" class="sans node-body">3. Synthesize receipts, verify facts, close workers</text>
+    <text x="14" y="140" class="mono node-cmd">No write grants • No nested fan-out</text>
+  </g>
+
+  <g transform="translate(908, 320)">
+    <rect x="0" y="0" width="492" height="156" rx="12" fill="#FFFFFF" stroke="#0F766E" stroke-width="1.8"/>
+    <rect x="14" y="14" width="194" height="20" rx="5" fill="#0F5C54"/>
+    <text x="111" y="28" text-anchor="middle" class="mono step-num">LANE C • ATLAS + HARNESS</text>
+    <text x="14" y="56" class="sans node-title">Plan -&gt; Worktree -&gt; Verify-Gated Feature Loop</text>
+    <text x="14" y="78" class="sans node-body">1. Atlas Read-Only Plan locks snapshot &amp; scope</text>
+    <text x="14" y="98" class="sans node-body">2. Create isolated Git worktree (codex/&lt;slug&gt;)</text>
+    <text x="14" y="118" class="sans node-body">3. Harness tracks features (F1..Fn); optional Orca (&lt;=3w)</text>
+    <text x="14" y="140" class="mono node-cmd">worktree.mjs create • harness.mjs init/add/verify</text>
+  </g>
+
+  <path d="M 222 476 L 222 508 L 304 508 L 304 542" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow-link)"/>
+  <path d="M 656 476 L 656 508 L 304 508" fill="none" stroke="#475569" stroke-width="2"/>
+  <path d="M 1146 476 L 1146 508 L 304 508" fill="none" stroke="#475569" stroke-width="2"/>
+
+  <g transform="translate(40, 546)">
+    <rect x="0" y="0" width="420" height="140" rx="12" fill="#F2FBF5" stroke="#166534" stroke-width="2"/>
+    <rect x="14" y="14" width="110" height="20" rx="5" fill="#166534"/>
+    <text x="69" y="28" text-anchor="middle" class="mono step-num">GATE 1 • VERIFY</text>
+    <text x="134" y="29" class="sans node-title">Deterministic Verification</text>
+    <text x="14" y="56" class="sans node-body">• Unit/Integration tests (node --test) + Lint + Doctor</text>
+    <text x="14" y="76" class="sans node-body">• Harness verify flips passes=true ONLY if exitCode === 0</text>
+    <text x="14" y="96" class="sans node-body">• UI tasks: real desktop/mobile render + 0 console errors</text>
+    <text x="14" y="120" class="mono node-cmd">eval-runner.mjs --compare • harness.mjs verify</text>
+  </g>
+
+  <line x1="460" y1="616" x2="538" y2="616" stroke="#166534" stroke-width="2.2" marker-end="url(#arrow-accent)"/>
+  <text x="499" y="606" text-anchor="middle" class="sans pass-lbl">PASS</text>
+
+  <g transform="translate(542, 546)">
+    <rect x="0" y="0" width="416" height="140" rx="12" fill="#EEF2FF" stroke="#3730A3" stroke-width="2"/>
+    <rect x="14" y="14" width="114" height="20" rx="5" fill="#3730A3"/>
+    <text x="71" y="28" text-anchor="middle" class="mono step-num">GATE 2 • REVIEW</text>
+    <text x="138" y="29" class="sans node-title">Independent Hybrid Review v2</text>
+    <text x="14" y="56" class="sans node-body">• Diff slicing &amp; batching (zero external gateway lock-in)</text>
+    <text x="14" y="76" class="sans node-body">• 100% changed-file coverage + existingCode line anchors</text>
+    <text x="14" y="96" class="sans node-body">• Blocks merge/delivery on unresolved Critical/High issues</text>
+    <text x="14" y="120" class="mono node-cmd">jarvis-review-mission.mjs • 100% diff coverage</text>
+  </g>
+
+  <line x1="958" y1="616" x2="1036" y2="616" stroke="#166534" stroke-width="2.2" marker-end="url(#arrow-accent)"/>
+  <text x="997" y="606" text-anchor="middle" class="sans pass-lbl">PASS</text>
+
+  <g transform="translate(1040, 546)">
+    <rect x="0" y="0" width="360" height="140" rx="12" fill="#121820"/>
+    <rect x="14" y="14" width="116" height="20" rx="5" fill="#0D9488"/>
+    <text x="72" y="28" text-anchor="middle" class="mono step-num">DONE • VERIFIED</text>
+    <text x="14" y="56" class="sans" font-size="13.5" font-weight="700" fill="#FFFFFF">Evidence-Backed Handoff</text>
+    <text x="14" y="78" class="sans" font-size="11.5" fill="#CBD5E1">• Bounded handoff (&lt;= 2 KiB) for next chat</text>
+    <text x="14" y="98" class="sans" font-size="11.5" fill="#CBD5E1">• Separate VERIFIED receipts vs UNVERIFIED</text>
+    <text x="14" y="118" class="mono" font-size="10.5" fill="#5EEAD4">Human sign-off required for push / deploy</text>
+  </g>
+
+  <path d="M 250 686 L 250 742 L 106 742 L 106 476" fill="none" stroke="#B91C1C" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrow-fail)"/>
+  <path d="M 750 686 L 750 742 L 250 742" fill="none" stroke="#B91C1C" stroke-width="2" stroke-dasharray="6 4"/>
+  <rect x="330" y="728" width="360" height="26" rx="8" fill="#FEF2F2" stroke="#FCA5A5" stroke-width="1.2"/>
+  <text x="510" y="745" text-anchor="middle" class="sans fail-lbl">FAIL / REGRESSION -&gt; Fix Root Cause &amp; Re-Verify (No Fake Pass)</text>
+
+  <text x="40" y="794" class="sans footer">Jarvis × Atlas Agent OS — Deterministic Execution Lifecycle (Verified Offline Evals • Cross-Session Handoff • Privacy-Safe)</text>
+</svg>

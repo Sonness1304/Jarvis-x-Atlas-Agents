@@ -1,0 +1,26 @@
+{
+  "name": "jarvis-atlas-agent-os",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Jarvis x Atlas — Multi-Agent Engineering OS, Custom MCP Servers, Long-Running Feature Harness, Lean Memory Recovery, and Deterministic Eval Framework",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "eval": "node src/eval-runner.mjs",
+    "audit:privacy": "node scripts/privacy-audit.mjs"
+  },
+  "keywords": [
+    "ai-agents",
+    "mcp",
+    "model-context-protocol",
+    "multi-agent",
+    "agent-harness",
+    "evals",
+    "codex",
+    "llm-gateway",
+    "developer-tools"
+  ]
+}
