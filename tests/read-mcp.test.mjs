@@ -12,6 +12,8 @@ test("read-mcp initialize and tools/list expose readOnlyHint annotations", async
   assert.equal(list.result.tools.length, 1);
   assert.equal(list.result.tools[0].annotations.readOnlyHint, true);
   assert.equal(list.result.tools[0].annotations.destructiveHint, false);
+  assert.equal(list.result.tools[0].annotations.idempotentHint, true);
+  assert.equal(list.result.tools[0].annotations.openWorldHint, true);
 });
 
 test("read-mcp github tool rejects path traversal and private repositories", async () => {

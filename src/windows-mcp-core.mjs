@@ -20,7 +20,7 @@ export const WINDOWS_TOOL_DEFINITIONS = [
       required: ['pid', 'windowId', 'processStart'],
       additionalProperties: false
     },
-    annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: false }
+    annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false }
   },
   {
     name: 'windows_uia_action',
@@ -37,7 +37,7 @@ export const WINDOWS_TOOL_DEFINITIONS = [
       required: ['bindingId', 'action', 'controlName'],
       additionalProperties: false
     },
-    annotations: { readOnlyHint: false, destructiveHint: false, openWorldHint: false }
+    annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false }
   },
   {
     name: 'windows_readback_state',
@@ -50,7 +50,7 @@ export const WINDOWS_TOOL_DEFINITIONS = [
       required: ['bindingId'],
       additionalProperties: false
     },
-    annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: false }
+    annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false }
   }
 ];
 

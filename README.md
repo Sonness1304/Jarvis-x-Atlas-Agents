@@ -266,6 +266,17 @@ pwsh -NoProfile -File scripts/windows/uia-bridge.ps1 -Action list-windows
 
 ---
 
+## Standalone Installable Skills (Agensi.io)
+
+Selected zero-dependency workflows extracted from **Jarvis × Atlas Agents** are also published as standalone `SKILL.md` packages for Claude Code, Codex CLI, Cursor, GitHub Copilot, and 20+ agents on [Agensi.io](https://www.agensi.io/creators/sonness1304):
+
+| Skill Package | Status | Highlights |
+|---|---|---|
+| [**Evidence-First Guardrails**](https://www.agensi.io/skills/evidence-first-guardrails) | **Live (Free · Security Scanned)** | Standalone `snapshot-guard.mjs` + `claim-audit.mjs` enforcing read-only workspace snapshot pinning, non-destructive Git safety, and receipt-backed `VERIFIED` handoffs |
+| **Editorial SVG Diagram Compiler** | **Draft (Coming Soon)** | 7 deterministic offline engineering SVG engines + Mermaid/Markdown ADR report compiler + WCAG 2.1 geometry linter |
+
+---
+
 ## Deep-Dive Documentation & CV Brief
 
 - **[User Guide — Complete Installation & CLI Manual](docs/user-guide.md)**

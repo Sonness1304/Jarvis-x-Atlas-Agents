@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
-import { createWindowsMcpController, verifyDriverIntegrity } from '../src/windows-mcp-core.mjs';
+import { WINDOWS_TOOL_DEFINITIONS, createWindowsMcpController, verifyDriverIntegrity } from '../src/windows-mcp-core.mjs';
 
 test('windows-mcp-core enforces observe-before-act and blocks blind replay after OUTCOME_UNKNOWN', async () => {
   let step = 0;
@@ -65,5 +65,14 @@ test('verifyDriverIntegrity checks exact SHA-256 hash before allowing elevated d
     assert.equal(verifyDriverIntegrity(bin, '0'.repeat(64)).code, 'DRIVER_INTEGRITY');
   } finally {
     fs.rmSync(tmp, { recursive: true, force: true });
+  }
+});
+
+test('windows-mcp-core declares all four boolean MCP tool annotations on every tool', () => {
+  assert.equal(WINDOWS_TOOL_DEFINITIONS.length, 3);
+  for (const tool of WINDOWS_TOOL_DEFINITIONS) {
+    for (const key of ['readOnlyHint', 'destructiveHint', 'idempotentHint', 'openWorldHint']) {
+      assert.equal(typeof tool.annotations?.[key], 'boolean', `${tool.name} missing boolean ${key}`);
+    }
   }
 });

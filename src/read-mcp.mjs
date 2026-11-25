@@ -51,7 +51,7 @@ export function createReadOnlyMcpTools(service, env = process.env, request = fet
     name: TOOL_NAMES[service],
     description: TOOL_DESCRIPTIONS[service],
     inputSchema: service === "github" ? REPO_SCHEMA : LIMIT_SCHEMA,
-    annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: true }
+    annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true }
   }];
 
   async function safeGetJson(url, headers = {}) {

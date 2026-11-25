@@ -289,6 +289,50 @@ export function recordProgress({ dir, summary, featureId = null, status = 'info'
   };
 }
 
+export function parseCommandArgv(command) {
+  const input = String(command ?? '').trim();
+  if (!input) {
+    throw new Error('Verification command cannot be empty.');
+  }
+  const argv = [];
+  let current = '';
+  let quote = null;
+  for (let i = 0; i < input.length; i += 1) {
+    const ch = input[i];
+    if (quote) {
+      if (ch === quote) {
+        quote = null;
+      } else if (ch === '\\' && quote === '"' && (input[i + 1] === '"' || input[i + 1] === '\\')) {
+        current += input[i + 1];
+        i += 1;
+      } else {
+        current += ch;
+      }
+      continue;
+    }
+    if (ch === '"' || ch === "'") {
+      quote = ch;
+    } else if (/\s/.test(ch)) {
+      if (current.length > 0) {
+        argv.push(current);
+        current = '';
+      }
+    } else {
+      current += ch;
+    }
+  }
+  if (quote) {
+    throw new Error('Unterminated quote in verification command.');
+  }
+  if (current.length > 0) {
+    argv.push(current);
+  }
+  if (argv.length === 0) {
+    throw new Error('Verification command produced empty argv.');
+  }
+  return argv;
+}
+
 export function verifyFeature({
   dir,
   id,
@@ -308,9 +352,10 @@ export function verifyFeature({
   }
 
   const startedAt = Date.now();
-  const proc = spawnSync(commandToRun, {
+  const argv = Array.isArray(commandToRun) ? commandToRun.map(String) : parseCommandArgv(commandToRun);
+  const proc = spawnSync(argv[0], argv.slice(1), {
     cwd: path.resolve(cwd),
-    shell: true,
+    shell: false,
     encoding: 'utf8',
     timeout: Number(timeoutMs) > 0 ? Number(timeoutMs) : DEFAULT_VERIFY_TIMEOUT_MS,
     windowsHide: true
