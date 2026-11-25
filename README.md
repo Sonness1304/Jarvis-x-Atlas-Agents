@@ -274,6 +274,7 @@ Selected zero-dependency workflows extracted from **Jarvis × Atlas Agents** are
 |---|---|---|
 | [**Evidence-First Guardrails**](https://www.agensi.io/skills/evidence-first-guardrails) | **Live (Free · Security Scanned)** | Standalone `snapshot-guard.mjs` + `claim-audit.mjs` enforcing read-only workspace snapshot pinning, non-destructive Git safety, and receipt-backed `VERIFIED` handoffs |
 | **Editorial SVG Diagram Compiler** | **Draft (Coming Soon)** | 7 deterministic offline engineering SVG engines + Mermaid/Markdown ADR report compiler + WCAG 2.1 geometry linter |
+| **Atlas Anchored Code Review** | **Draft ($19 · Coming Soon)** | 3-stage offline review pipeline (`diff-slicer.mjs`, `static-prepass.mjs`, `review-gate.mjs`) enforcing 100% file coverage + live `existingCode` byte anchors |
 
 ---
 
