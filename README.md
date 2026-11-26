@@ -268,13 +268,14 @@ pwsh -NoProfile -File scripts/windows/uia-bridge.ps1 -Action list-windows
 
 ## Standalone Installable Skills (Agensi.io)
 
-Selected zero-dependency workflows extracted from **Jarvis × Atlas Agents** are also published as standalone `SKILL.md` packages for Claude Code, Codex CLI, Cursor, GitHub Copilot, and 20+ agents on [Agensi.io](https://www.agensi.io/creators/sonness1304):
+Selected zero-dependency workflows extracted from **Jarvis × Atlas Agents** are published and security-scanned as standalone `SKILL.md` packages for Claude Code, Codex CLI, Cursor, GitHub Copilot, and 20+ agents on [Agensi.io](https://www.agensi.io/creators/sonness1304):
 
-| Skill Package | Status | Highlights |
+| Package | Pricing & Status | Highlights |
 |---|---|---|
-| [**Evidence-First Guardrails**](https://www.agensi.io/skills/evidence-first-guardrails) | **Live (Free · Security Scanned)** | Standalone `snapshot-guard.mjs` + `claim-audit.mjs` enforcing read-only workspace snapshot pinning, non-destructive Git safety, and receipt-backed `VERIFIED` handoffs |
-| **Editorial SVG Diagram Compiler** | **Draft (Coming Soon)** | 7 deterministic offline engineering SVG engines + Mermaid/Markdown ADR report compiler + WCAG 2.1 geometry linter |
-| **Atlas Anchored Code Review** | **Draft ($19 · Coming Soon)** | 3-stage offline review pipeline (`diff-slicer.mjs`, `static-prepass.mjs`, `review-gate.mjs`) enforcing 100% file coverage + live `existingCode` byte anchors |
+| [**Evidence-First Guardrails**](https://www.agensi.io/skills/evidence-first-guardrails) | **Free · Live (Security Scanned)** | Standalone `snapshot-guard.mjs` + `claim-audit.mjs` enforcing read-only workspace snapshot pinning, non-destructive Git safety, and receipt-backed `VERIFIED` handoffs |
+| [**Editorial SVG Diagram Compiler**](https://www.agensi.io/skills/editorial-svg-diagram-compiler) | **$15 · Live (Security Scanned)** | 7 deterministic offline engineering SVG engines + Mermaid/Markdown ADR report compiler + WCAG 2.1 geometry linter |
+| [**Atlas Anchored Code Review**](https://www.agensi.io/skills/atlas-anchored-code-review) | **$19 · Live (Security Scanned)** | 3-stage offline PR review pipeline (`diff-slicer.mjs`, `static-prepass.mjs`, `review-gate.mjs`) enforcing 100% file coverage + live `existingCode` byte anchors |
+| [**Jarvis × Atlas Engineering OS Pro Bundle**](https://www.agensi.io/bundles/jarvis-x-atlas-engineering-os-pro-bundle) | **$29 · Live (Save $5)** | Both paid flagship skills (**Editorial SVG Diagram Compiler** + **Atlas Anchored Code Review**) in one zero-dependency bundle |
 
 ---
 
