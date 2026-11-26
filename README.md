@@ -276,8 +276,10 @@ Selected zero-dependency workflows extracted from **Jarvis × Atlas Agents** are
 | [**Editorial SVG Diagram Compiler**](https://www.agensi.io/skills/editorial-svg-diagram-compiler) | **$15 · Live (Security Scanned)** | 7 deterministic offline engineering SVG engines + Mermaid/Markdown ADR report compiler + WCAG 2.1 geometry linter |
 | [**Atlas Anchored Code Review**](https://www.agensi.io/skills/atlas-anchored-code-review) | **$19 · Live (Security Scanned)** | 3-stage offline PR review pipeline (`diff-slicer.mjs`, `static-prepass.mjs`, `review-gate.mjs`) enforcing 100% file coverage + live `existingCode` byte anchors |
 | [**Parallel Worktree Orchestrator**](https://www.agensi.io/skills/parallel-worktree-orchestrator) | **$12 · Live (Launch Deal $9 · 25% off)** | Multi-lane Git worktree runner (`worktree-lane.mjs`, `merge-readiness.mjs`, `context-brief.mjs`) with exclusive file-ownership locks, dry-run merge gates, and token-bounded handoff briefs |
+| [**Editorial Slide Deck Compiler**](https://www.agensi.io/skills/editorial-slide-deck-compiler) | **$12 · Live** | Offline Markdown/JSON to interactive 16:9 HTML and standalone SVG slides, with density and contrast linting and browser PDF export |
 | [**Jarvis × Atlas Engineering OS Pro Bundle**](https://www.agensi.io/bundles/jarvis-x-atlas-engineering-os-pro-bundle) | **$29 · Live (Save $5 / 15%)** | **Editorial SVG Diagram Compiler** ($15) + **Atlas Anchored Code Review** ($19) in one zero-dependency bundle |
 | [**Jarvis × Atlas Engineering OS Complete Suite**](https://www.agensi.io/bundles/jarvis-x-atlas-engineering-os-complete-suite) | **$34 · Live (Save $12 / 26%)** | All 3 paid skills (**Editorial SVG Diagram Compiler** + **Atlas Anchored Code Review** + **Parallel Worktree Orchestrator** — $46 value for $34) |
+| [**Jarvis x Atlas Full Creator & Engineering Suite**](https://www.agensi.io/bundles/jarvis-x-atlas-full-creator-engineering-suite) | **$39 · Live (Save $19 / 33%)** | All 4 paid skills (**Editorial SVG Diagram Compiler** + **Atlas Anchored Code Review** + **Parallel Worktree Orchestrator** + **Editorial Slide Deck Compiler** — $58 individual list total for $39) |
 
 ---
 
