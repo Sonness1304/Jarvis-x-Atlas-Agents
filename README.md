@@ -268,14 +268,16 @@ pwsh -NoProfile -File scripts/windows/uia-bridge.ps1 -Action list-windows
 
 ## Standalone Installable Skills (Agensi.io)
 
-Selected zero-dependency workflows extracted from **Jarvis × Atlas Agents** are published and security-scanned as standalone `SKILL.md` packages for Claude Code, Codex CLI, Cursor, GitHub Copilot, and 20+ agents on [Agensi.io](https://www.agensi.io/creators/sonness1304):
+Selected zero-dependency workflows extracted from **Jarvis × Atlas Agents** are published and security-scanned as standalone `SKILL.md` packages for Claude Code, Codex CLI, Cursor, OpenCode, GitHub Copilot, and 20+ agents on [Agensi.io](https://www.agensi.io/creators/sonness1304):
 
 | Package | Pricing & Status | Highlights |
 |---|---|---|
 | [**Evidence-First Guardrails**](https://www.agensi.io/skills/evidence-first-guardrails) | **Free · Live (Security Scanned)** | Standalone `snapshot-guard.mjs` + `claim-audit.mjs` enforcing read-only workspace snapshot pinning, non-destructive Git safety, and receipt-backed `VERIFIED` handoffs |
 | [**Editorial SVG Diagram Compiler**](https://www.agensi.io/skills/editorial-svg-diagram-compiler) | **$15 · Live (Security Scanned)** | 7 deterministic offline engineering SVG engines + Mermaid/Markdown ADR report compiler + WCAG 2.1 geometry linter |
 | [**Atlas Anchored Code Review**](https://www.agensi.io/skills/atlas-anchored-code-review) | **$19 · Live (Security Scanned)** | 3-stage offline PR review pipeline (`diff-slicer.mjs`, `static-prepass.mjs`, `review-gate.mjs`) enforcing 100% file coverage + live `existingCode` byte anchors |
-| [**Jarvis × Atlas Engineering OS Pro Bundle**](https://www.agensi.io/bundles/jarvis-x-atlas-engineering-os-pro-bundle) | **$29 · Live (Save $5)** | Both paid flagship skills (**Editorial SVG Diagram Compiler** + **Atlas Anchored Code Review**) in one zero-dependency bundle |
+| [**Parallel Worktree Orchestrator**](https://www.agensi.io/skills/parallel-worktree-orchestrator) | **$12 · Live (Launch Deal $9 · 25% off)** | Multi-lane Git worktree runner (`worktree-lane.mjs`, `merge-readiness.mjs`, `context-brief.mjs`) with exclusive file-ownership locks, dry-run merge gates, and token-bounded handoff briefs |
+| [**Jarvis × Atlas Engineering OS Pro Bundle**](https://www.agensi.io/bundles/jarvis-x-atlas-engineering-os-pro-bundle) | **$29 · Live (Save $5 / 15%)** | **Editorial SVG Diagram Compiler** ($15) + **Atlas Anchored Code Review** ($19) in one zero-dependency bundle |
+| [**Jarvis × Atlas Engineering OS Complete Suite**](https://www.agensi.io/bundles/jarvis-x-atlas-engineering-os-complete-suite) | **$34 · Live (Save $12 / 26%)** | All 3 paid skills (**Editorial SVG Diagram Compiler** + **Atlas Anchored Code Review** + **Parallel Worktree Orchestrator** — $46 value for $34) |
 
 ---
 
